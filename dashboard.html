@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resumo - Vaquinha app</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="phone">
+
+    <header class="topo">
+      <div>
+        <h1>Olá, Produtor!</h1>
+        <p>📍 Fazenda XXX</p>
+      </div>
+      <div class="sino">🔔</div>
+    </header>
+
+    <!-- Cards de contadores (dados fictícios) -->
+    <section class="contadores">
+      <div class="contador verde">
+        <span>Total Animais:</span>
+        <strong>234</strong>
+      </div>
+      <div class="contador laranja">
+        <span>Vacinas Pendentes:</span>
+        <strong>57</strong>
+      </div>
+    </section>
+
+    <!-- Placeholder do gráfico (rosca feita só com CSS) -->
+    <div class="secao">
+      <h2>Destino do rebanho</h2>
+      <small>Hoje</small>
+    </div>
+    <section class="card grafico">
+      <div class="rosca">
+        <div>142 <small>animais</small></div>
+      </div>
+      <ul class="legenda">
+        <li style="--cor: #1b5e20"><span>Abate</span> <b>46%</b></li>
+        <li style="--cor: #66a86b"><span>Venda</span> <b>30%</b></li>
+        <li style="--cor: #ff9800"><span>Manter</span> <b>24%</b></li>
+      </ul>
+    </section>
+
+    <div class="secao">
+      <h2>Próximos passos</h2>
+      <small>Ver agenda</small>
+    </div>
+    <section class="card">
+      <div class="passo">
+        <span class="num">1</span>
+        <p>Vacinar lote de aftosa (45 animais)<br>
+          <small class="urgente">Prioridade • Até sexta-feira</small></p>
+        <span>›</span>
+      </div>
+      <div class="passo">
+        <span class="num">2</span>
+        <p>Marcação definitiva (15 animais)<br>
+          <small>Planejado para 05 out.</small></p>
+        <span>›</span>
+      </div>
+    </section>
+
+    <!-- Menu inferior -->
+    <nav class="menu">
+      <a class="ativo" href="dashboard.html"><span class="icone">📊</span>Resumo</a>
+      <a href="lista.html"><span class="icone">☰</span>Lotes</a>
+      <a class="fab" href="cadastro.html">+</a>
+      <a href="#"><span class="icone">📅</span>Agenda</a>
+      <a href="#"><span class="icone">⚙️</span>Ajustes</a>
+    </nav>
+
+  </main>
+</body>
+</html>

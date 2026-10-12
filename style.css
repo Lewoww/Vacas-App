@@ -1,0 +1,322 @@
+/* ===== Cores principais ===== */
+:root {
+  --verde: #1b5e20;
+  --verde-claro: #66a86b;
+  --laranja: #ff9800;
+  --cinza: #7b8379;
+  --fundo-app: #f4f6f3;
+  --fundo-escuro: #212121;
+  --texto: #1a1a1a;
+}
+
+/* ===== Base ===== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Roboto, Arial, sans-serif;
+  background: var(--fundo-escuro);
+  color: var(--texto);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Moldura do "celular" (container arredondado sobre o fundo escuro) */
+.phone {
+  position: relative;
+  width: 100%;
+  max-width: 390px;
+  min-height: 800px;
+  margin: 20px auto;
+  background: var(--fundo-app);
+  border-radius: 30px;
+  overflow: hidden;
+  padding: 24px 20px 100px;
+}
+
+/* ===== Botão ===== */
+.btn {
+  display: block;
+  width: 100%;
+  padding: 16px;
+  border: none;
+  border-radius: 16px;
+  background: var(--verde);
+  color: #fff;
+  font-size: 16px;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 6px 12px rgba(27, 94, 32, 0.25);
+}
+
+/* ===== Login ===== */
+.login h1 {
+  margin: 140px 0 120px;
+  text-align: center;
+  font-size: 34px;
+  font-weight: 400;
+  color: var(--verde);
+}
+
+.login label {
+  display: block;
+  margin: 16px 0 8px;
+  font-size: 15px;
+  color: #333;
+}
+
+.login input {
+  width: 100%;
+  padding: 18px 16px;
+  border: 1px solid var(--cinza);
+  border-radius: 16px;
+  background: #e8ebe6;
+  font-size: 15px;
+}
+
+.login .btn {
+  margin-top: 24px;
+}
+
+.login .link {
+  display: block;
+  margin-top: 24px;
+  text-align: center;
+  font-size: 15px;
+  color: var(--verde);
+}
+
+.login .rodape {
+  margin-top: 100px;
+  text-align: center;
+  font-size: 15px;
+  color: var(--cinza);
+}
+
+.login .rodape a {
+  color: var(--verde);
+}
+
+/* ===== Dashboard ===== */
+.topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
+}
+
+.topo h1 {
+  font-size: 22px;
+}
+
+.topo p {
+  margin-top: 4px;
+  font-size: 14px;
+  color: var(--cinza);
+}
+
+.sino {
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  background: #dfeedd;
+  font-size: 20px;
+  text-align: center;
+  line-height: 46px;
+}
+
+/* Cards de contadores */
+.contadores {
+  display: flex;
+  gap: 12px;
+  margin: 24px 0;
+}
+
+.contador {
+  flex: 1;
+  padding: 14px;
+  border-radius: 16px;
+  color: #fff;
+}
+
+.contador span {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.contador strong {
+  display: block;
+  margin-top: 8px;
+  font-size: 36px;
+  font-weight: 400;
+}
+
+.contador.verde { background: var(--verde); }
+.contador.laranja { background: var(--laranja); }
+
+/* Títulos de seção */
+.secao {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin: 8px 0 12px;
+}
+
+.secao h2 {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.secao small {
+  font-size: 12px;
+  font-weight: bold;
+  color: var(--verde);
+}
+
+/* Card branco */
+.card {
+  background: #fff;
+  border-radius: 20px;
+  padding: 16px;
+  margin-bottom: 20px;
+}
+
+/* Gráfico de rosca (placeholder em CSS puro) */
+.grafico {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.rosca {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: conic-gradient(
+    var(--verde) 0 46%,
+    var(--verde-claro) 46% 76%,
+    var(--laranja) 76% 100%
+  );
+}
+
+.rosca div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: #fff;
+  font-size: 24px;
+}
+
+.rosca small {
+  font-size: 11px;
+  color: var(--cinza);
+}
+
+.legenda {
+  flex: 1;
+  list-style: none;
+}
+
+.legenda li {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 13px;
+}
+
+.legenda li:last-child { margin-bottom: 0; }
+
+.legenda li span::before {
+  content: "";
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 6px;
+  border-radius: 50%;
+  background: var(--cor);
+}
+
+/* Próximos passos */
+.passo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+}
+
+.passo:last-child { border-bottom: none; }
+
+.passo .num {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #dfeedd;
+  text-align: center;
+  line-height: 32px;
+}
+
+.passo p { flex: 1; }
+.passo small { color: var(--cinza); }
+.passo .urgente { color: #d32f2f; }
+
+/* ===== Menu inferior ===== */
+.menu {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 14px 8px 20px;
+  background: #fff;
+  font-size: 11px;
+  color: var(--cinza);
+}
+
+.menu a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.menu a.ativo {
+  color: var(--verde);
+  font-weight: bold;
+}
+
+.menu .icone {
+  font-size: 20px;
+}
+
+.menu .fab {
+  width: 60px;
+  height: 60px;
+  margin-top: -44px;
+  border: 4px solid #fff;
+  border-radius: 50%;
+  background: var(--laranja);
+  color: #fff;
+  font-size: 32px;
+  line-height: 52px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
