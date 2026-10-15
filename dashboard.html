@@ -17,19 +17,17 @@
       <div class="sino">🔔</div>
     </header>
 
-    <!-- Cards de contadores (dados fictícios) -->
     <section class="contadores">
       <div class="contador verde">
         <span>Total Animais:</span>
-        <strong>234</strong>
+        <strong id="total-animais">234</strong>
       </div>
       <div class="contador laranja">
         <span>Vacinas Pendentes:</span>
-        <strong>57</strong>
+        <strong id="vacinas-pendentes">57</strong>
       </div>
     </section>
 
-    <!-- Placeholder do gráfico (rosca feita só com CSS) -->
     <div class="secao">
       <h2>Destino do rebanho</h2>
       <small>Hoje</small>
@@ -64,7 +62,6 @@
       </div>
     </section>
 
-    <!-- Menu inferior -->
     <nav class="menu">
       <a class="ativo" href="dashboard.html"><span class="icone">📊</span>Resumo</a>
       <a href="lista.html"><span class="icone">☰</span>Lotes</a>
@@ -74,5 +71,14 @@
     </nav>
 
   </main>
+
+  <script>
+    const animais = JSON.parse(localStorage.getItem('animaisMock') || '[]');
+    const total = Math.max(animais.length || 234, 1);
+    const pendentes = Math.max(7, Math.min(99, total - 10));
+
+    document.getElementById('total-animais').textContent = String(total);
+    document.getElementById('vacinas-pendentes').textContent = String(pendentes);
+  </script>
 </body>
 </html>

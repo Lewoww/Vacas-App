@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lista do Rebanho</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="tela">
+
+    <div class="cabecalho-verde">
+      <h1>Lista/Tabela do Rebanho</h1>
+      <input id="busca" class="busca" type="text" placeholder="Busca">
+      <button class="filtro filtro-escuro" type="button" data-filtro="Macho">Machos ×</button>
+      <button class="filtro" type="button" data-filtro="Fêmea">Fêmeas ×</button>
+    </div>
+
+    <div class="conteudo area-rolagem">
+      <div class="linha-total">
+        <b id="contador-animais">0 animais</b>
+        <a href="#">Mais recentes</a>
+      </div>
+
+      <ul id="lista-animais" class="lista-animais"></ul>
+    </div>
+
+    <div class="menu">
+      <a href="dashboard.html">Resumo</a>
+      <a class="ativo" href="lista.html">Lotes</a>
+      <a class="botao-laranja" href="cadastro.html">+</a>
+      <a href="#">Agenda</a>
+      <a href="#">Ajustes</a>
+    </div>
+  </div>
+
+  <script>
+    const animaisPadrao = [
+      { id: '00109003', dataNascimento: '2024-05-23', sexo: 'Macho' },
+      { id: '00109018', dataNascimento: '2024-05-21', sexo: 'Macho' },
+      { id: '00109127', dataNascimento: '2024-05-19', sexo: 'Fêmea' },
+      { id: '00109142', dataNascimento: '2024-05-17', sexo: 'Fêmea' },
+      { id: '00109205', dataNascimento: '2024-05-14', sexo: 'Macho' },
+      { id: '00109206', dataNascimento: '2024-05-14', sexo: 'Macho' },
+      { id: '00109207', dataNascimento: '2024-05-14', sexo: 'Fêmea' },
+      { id: '00109214', dataNascimento: '2024-05-12', sexo: 'Macho' },
+      { id: '00109231', dataNascimento: '2024-05-10', sexo: 'Fêmea' }
+    ];
+
+    const getAnimais = () => {
+      const salvos = JSON.parse(localStorage.getItem('animaisMock') || 'null');
+      if (Array.isArray(salvos) && salvos.length) {
+        return salvos;
+      }
+      localStorage.setItem('animaisMock', JSON.stringify(animaisPadrao));
+      return animaisPadrao;
+    };
+
+    const formatarData = (data) => {
+      if (!data) return '—';
+      const [ano, mes, dia] = data.split('-');
+      return `${dia}/${mes}/${ano}`;
+    };
+
+    const renderLista = () => {
+      const busca = document.getElementById('busca').value.trim().toLowerCase();
+      const filtro = document.querySelector('.filtro-escuro')?.dataset?.filtro || 'Macho';
+      const animais = getAnimais();
+      const filtrados = animais.filter((animal) => {
+        const texto = `${animal.id} ${animal.dataNascimento} ${animal.sexo}`.toLowerCase();
+        const bateBusca = !busca || texto.includes(busca);
+        const bateFiltro = filtro === 'Todos' || animal.sexo === filtro;
+        return bateBusca && bateFiltro;
+      });
+
+      document.getElementById('contador-animais').textContent = `${filtrados.length} ${filtrados.length === 1 ? 'animal' : 'animais'}`;
+
+      const lista = document.getElementById('lista-animais');
+      lista.innerHTML = filtrados.map((animal) => `
+        <li class="cartao-animal">
+          <div>
+            <small>ID</small>
+            <strong>${animal.id}</strong>
+            <span>${formatarData(animal.dataNascimento)}</span>
+          </div>
+          <div class="check">✓</div>
+        </li>
+      `).join('');
+    };
+
+    const filtros = document.querySelectorAll('.filtro');
+    filtros.forEach((botao) => {
+      botao.addEventListener('click', () => {
+        filtros.forEach((item) => item.classList.remove('filtro-escuro'));
+        botao.classList.add('filtro-escuro');
+        renderLista();
+      });
+    });
+
+    document.getElementById('busca').addEventListener('input', renderLista);
+    renderLista();
+  </script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro de Nascimento</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="tela">
+
+    <div class="cabecalho-verde cabecalho-voltar">
+      <a href="lista.html">←</a>
+      <h1>Cadastro de Nascimento</h1>
+    </div>
+
+    <!-- O botão Salvar só volta para a lista (nada é salvo) -->
+    <form class="conteudo area-rolagem" action="lista.html">
+      <label class="rotulo">Data de Nascimento</label>
+      <input class="campo" type="date" value="2022-11-07">
+
+      <label class="rotulo">ID Provisório</label>
+      <input class="campo" type="text" value="00109003">
+
+      <label class="rotulo">ID da Mãe</label>
+      <input class="campo" type="text" value="00109002">
+
+      <p class="rotulo">Sexo</p>
+      <div class="botoes-sexo">
+        <button class="botao-sexo botao-sexo-ativo" type="button" data-sexo="Macho" aria-pressed="true">✓ Macho</button>
+        <button class="botao-sexo" type="button" data-sexo="Fêmea" aria-pressed="false">Fêmea</button>
+      </div>
+      <input type="hidden" id="sexo" value="Macho">
+
+      <button class="botao-verde" type="submit">Salvar</button>
+    </form>
+
+  </div>
+
+  <script>
+    const botoesSexo = document.querySelectorAll('.botao-sexo');
+    const campoSexo = document.getElementById('sexo');
+
+    botoesSexo.forEach((botao) => {
+      botao.addEventListener('click', () => {
+        botoesSexo.forEach((item) => {
+          const ativo = item === botao;
+          item.classList.toggle('botao-sexo-ativo', ativo);
+          item.setAttribute('aria-pressed', String(ativo));
+          if (ativo) {
+            item.textContent = '✓ ' + item.dataset.sexo;
+          } else {
+            item.textContent = item.dataset.sexo;
+          }
+        });
+        campoSexo.value = botao.dataset.sexo;
+      });
+    });
+
+    document.querySelector('.conteudo').addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      const campos = document.querySelectorAll('.campo');
+      const nascimento = campos[0].value || '2024-01-01';
+      const id = campos[1].value.trim() || `00${String(Date.now()).slice(-6)}`;
+      const maeId = campos[2].value.trim() || '00109002';
+      const sexo = campoSexo.value || 'Macho';
+
+      const animais = JSON.parse(localStorage.getItem('animaisMock') || '[]');
+      animais.unshift({
+        id,
+        dataNascimento: nascimento,
+        maeId,
+        sexo,
+        dataCadastro: new Date().toISOString().slice(0, 10)
+      });
+
+      localStorage.setItem('animaisMock', JSON.stringify(animais));
+      window.location.href = 'lista.html';
+    });
+  </script>
+</body>
+</html>
