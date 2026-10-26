@@ -27,7 +27,7 @@ a {
   text-decoration: none;
 }
 
-/* Moldura do "celular" (container arredondado sobre o fundo escuro) */
+
 .phone {
   position: relative;
   width: 100%;
@@ -187,7 +187,7 @@ a {
   margin-bottom: 20px;
 }
 
-/* Gráfico de rosca (placeholder em CSS puro) */
+/*placeholder */
 .grafico {
   display: flex;
   align-items: center;
